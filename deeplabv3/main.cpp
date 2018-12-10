@@ -32,6 +32,7 @@ int main(int argc, char* argv[]){
     auto version = GetInferenceEngineVersion();
     cout << "InferenceEngine Version: " << version->apiVersion.major << "." << version->apiVersion.minor << endl;
     cout << "build: " << version->buildNumber << endl;
+
     // 1. Load a Plugin
     vector<string> pluginDirs {"/home/sfy/intel/computer_vision_sdk/deployment_tools/inference_engine/lib/ubuntu_16.04/intel64"};
     InferenceEnginePluginPtr engine_ptr = PluginDispatcher(pluginDirs).getSuitablePlugin(TargetDevice::eCPU);
@@ -158,6 +159,6 @@ int main(int argc, char* argv[]){
         throw std::logic_error("Can't open file : " + fileName);
     }
 
-    overlayOutput(resizedCroppedSeg, reader->img, 21);
+    tools::overlayOutput(resizedCroppedSeg, reader->img, 21);
 
 }

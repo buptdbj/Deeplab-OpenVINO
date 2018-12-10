@@ -1,6 +1,11 @@
 #pragma once
-#include <opencv2/core.hpp>
-#include <samples/common.hpp>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+namespace tools{
+
 /*****************************************
 ******************************************
  * @brief Writes output data to image
@@ -68,4 +73,6 @@ void overlayOutput(cv::Mat& data, cv::Mat& src, size_t classesNum) {
     cv::imshow("Seg", Seg);
     cv::imshow("Overlay", Dst);
     cv::waitKey(0);
+}
+
 }
