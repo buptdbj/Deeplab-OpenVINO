@@ -79,7 +79,7 @@ Model Optimizer version: 	1.2.185.5335e231
 
 3. run
 
-    - cd intel64/Debug
+    - cd deeplabv3
 
     - `./deeplabv3 --image <IMG_PATH> --m <.xml_PATH> --w <.bin_PATH>`
 
