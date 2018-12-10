@@ -8,9 +8,16 @@
 
 2. Converting Deeplab Model to Intermediate Representation (IR)
 
-Use the mo.py script from the <INSTALL_DIR>/deployment_tools/model_optimizer directory to run the Model Optimizer and convert the model to the Intermediate Representation (IR).
 
-`python3 mo.py --input_model <frozen_inference_graph.pb MODEL_PATH> --output ArgMax --input 1:mul_1 --input_shape "(1,513,513,3)" --output_dir <OUTPUT_DIR>`
+	- Setup enviroment
+
+    	Use the script bin/setupvars.sh to set the environment variables
+
+    	`source <INSTALL_PATH>/bin/setupvars.sh`
+
+	Use the mo.py script from the <INSTALL_DIR>/deployment_tools/model_optimizer directory to run the Model Optimizer and convert the model to the Intermediate Representation (IR).
+
+	`python3 mo.py --input_model <frozen_inference_graph.pb MODEL_PATH> --output ArgMax --input 1:mul_1 --input_shape "(1,513,513,3)" --output_dir <OUTPUT_DIR>`
 
 ```bash
 Model Optimizer arguments:
@@ -74,7 +81,7 @@ Model Optimizer version: 	1.2.185.5335e231
 
     - cd intel64/Debug
 
-    - `./deeplabv3 --image <IMG_PATH>`
+    - `./deeplabv3 --image <IMG_PATH> --m <.xml_PATH> --w <.bin_PATH>`
 
 *References*:
 
