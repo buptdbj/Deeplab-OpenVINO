@@ -16,22 +16,16 @@
 #include <opencv2/highgui.hpp>
 #include <opencv2/opencv.hpp>
 
-#include "tools.hpp"
+#include "helper/tools.hpp"
+#include "helper/flags.hpp"
 
 using namespace InferenceEngine;
 using namespace std;
 
-DEFINE_string(
-    image,
-    "",
-    "input image"
-);
 
 int main(int argc, char* argv[]){
+    gflags::RegisterFlagValidator(&helper::FLAGS_image, helper::ValidateName);
     gflags::ParseCommandLineFlags(&argc, &argv, true);
-    if(FLAGS_image.empty()){
-        throw std::logic_error("Parameter -image is not set");
-    }
     auto version = GetInferenceEngineVersion();
     cout << "InferenceEngine Version: " << version->apiVersion.major << "." << version->apiVersion.minor << endl;
     cout << "build: " << version->buildNumber << endl;
@@ -93,9 +87,9 @@ int main(int argc, char* argv[]){
 
     // 6. Prepare Input
     /** Collect images data ptrs **/
-    FormatReader::ReaderPtr reader(FLAGS_image.c_str());
+    FormatReader::ReaderPtr reader(helper::FLAGS_image.c_str());
     if (reader.get() == nullptr) {
-        cout << "Image: " << FLAGS_image << " cannot be read!" << endl;
+        cout << "Image: " << helper::FLAGS_image << " cannot be read!" << endl;
         return -1;
     }
     
