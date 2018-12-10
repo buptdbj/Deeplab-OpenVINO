@@ -25,7 +25,10 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     gflags::RegisterFlagValidator(&helper::FLAGS_image, helper::ValidateName);
+    gflags::RegisterFlagValidator(&helper::FLAGS_m, helper::Validate_m);
+    gflags::RegisterFlagValidator(&helper::FLAGS_w, helper::Validate_w);
     gflags::ParseCommandLineFlags(&argc, &argv, true);
+
     auto version = GetInferenceEngineVersion();
     cout << "InferenceEngine Version: " << version->apiVersion.major << "." << version->apiVersion.minor << endl;
     cout << "build: " << version->buildNumber << endl;
@@ -39,8 +42,8 @@ int main(int argc, char* argv[]){
 
     // 2. Read the Model Intermediate Representation (IR)
     CNNNetReader network_reader;
-    network_reader.ReadNetwork("/home/sfy/ws/ir/deeplab/frozen_inference_graph.xml");
-    network_reader.ReadWeights("/home/sfy/ws/ir/deeplab/frozen_inference_graph.bin");
+    network_reader.ReadNetwork(helper::FLAGS_m);
+    network_reader.ReadWeights(helper::FLAGS_w);
 
     // 3. Configure Input and Output
     CNNNetwork network = network_reader.getNetwork();
@@ -157,5 +160,4 @@ int main(int argc, char* argv[]){
 
     overlayOutput(resizedCroppedSeg, reader->img, 21);
 
-    cv::waitKey(0);
 }
