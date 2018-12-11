@@ -75,6 +75,7 @@ Model Optimizer version: 	1.2.185.5335e231
     - mkdir build
     - cd build
     - cmake ..
+	- set `PLUGIN_DIR` in deeplabv3/main.cpp
     - make
 
 3. run

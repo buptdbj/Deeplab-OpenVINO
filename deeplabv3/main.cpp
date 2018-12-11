@@ -22,6 +22,7 @@
 using namespace InferenceEngine;
 using namespace std;
 
+#define PLUGIN_DIR "/home/sfy/intel/computer_vision_sdk/deployment_tools/inference_engine/lib/ubuntu_16.04/intel64"
 
 int main(int argc, char* argv[]){
     gflags::RegisterFlagValidator(&helper::FLAGS_image, helper::ValidateName);
@@ -34,7 +35,7 @@ int main(int argc, char* argv[]){
     cout << "build: " << version->buildNumber << endl;
 
     // 1. Load a Plugin
-    vector<string> pluginDirs {"/home/sfy/intel/computer_vision_sdk/deployment_tools/inference_engine/lib/ubuntu_16.04/intel64"};
+    vector<string> pluginDirs {PLUGIN_DIR};
     InferenceEnginePluginPtr engine_ptr = PluginDispatcher(pluginDirs).getSuitablePlugin(TargetDevice::eCPU);
     InferencePlugin plugin(engine_ptr);
     cout << "Plugin Version: " << plugin.GetVersion()->apiVersion.major << "." << plugin.GetVersion()->apiVersion.minor << endl;
