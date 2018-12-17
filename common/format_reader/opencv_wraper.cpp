@@ -49,7 +49,6 @@ std::shared_ptr<unsigned char> OCVReader::getData(int width = 0, int height = 0)
         double resize_ratio = (double)width / (double)max(iw, ih);
         resized_w = resize_ratio * iw;
         resized_h = resize_ratio * ih;
-        cout << resize_ratio << endl;
         if (width != iw || height != ih) {
             slog::warn << "Image is resized from (" << iw << ", " << ih << ") to (" 
                        << resized_w << ", " << resized_h << ")" << slog::endl;
